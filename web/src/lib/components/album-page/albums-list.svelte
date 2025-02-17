@@ -295,9 +295,13 @@
   };
 
   const updateRecentAlbumInfo = (album: AlbumResponseDto) => {
-    const cachedAlbum = userInteraction.recentAlbums?.find((a) => a.id === album.id);
-    if (cachedAlbum) {
-      Object.assign(cachedAlbum, album);
+    try {
+      const cachedAlbum = userInteraction.recentAlbums?.find((a) => a.id === album.id);
+      if (cachedAlbum) {
+        Object.assign(cachedAlbum, album);
+      }
+    } catch (error) {
+      console.error('Failed to update recent album info:', error);
     }
   };
 
