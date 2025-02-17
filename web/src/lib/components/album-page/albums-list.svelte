@@ -295,11 +295,9 @@
   };
 
   const updateRecentAlbumInfo = (album: AlbumResponseDto) => {
-    for (const cachedAlbum of userInteraction.recentAlbums || []) {
-      if (cachedAlbum.id === album.id) {
-        Object.assign(cachedAlbum, { ...cachedAlbum, ...album });
-        break;
-      }
+    const cachedAlbum = userInteraction.recentAlbums?.find((a) => a.id === album.id);
+    if (cachedAlbum) {
+      Object.assign(cachedAlbum, album);
     }
   };
 
